@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/olavoprado/GameNodeLoginGit/issues"
   },
-  "homepage": "https://github.com/olavoprado/GameNodeLoginGit#readme"
+  "homepage": "https://github.com/olavoprado/GameNodeLoginGit#readme",
+  "dependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
