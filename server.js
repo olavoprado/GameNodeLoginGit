@@ -17,7 +17,7 @@ var connection = mysql.createConnection({
     user: 'omccre77_omcprad',
     password: 'zxcv1357',
     database: 'omccre77_omcprado',
-    port: '3306'
+    //port: '3306'
     //ssl=true 
     //quando estiver em produção, e a hospedagem fornecer o certificado
 
