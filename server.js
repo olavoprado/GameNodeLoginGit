@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var connection = mysql.createConnection({
-    host: 'https://omccreate.com/',
+    host: 'br480.hostgator.com.br',
     user: 'omccre77_omcprad',
     password: 'zxcv1357',
     database: 'omccre77_omcprado',
