@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var connection = mysql.createConnection({
-    host: 'db4free.net',
-    user: 'omcprado',
+    host: '216.172.172.205',
+    user: 'omccre77_omcprad',
     password: 'zxcv1357',
-    database: 'omcprado',
+    database: 'omccre77_omcprado',
     port: '3306'
     //ssl=true 
     //quando estiver em produção, e a hospedagem fornecer o certificado
