@@ -39,7 +39,7 @@ app.get('/', function (req, res){
     res.send('Welcome!');
 });
 
-app.get('/login/:email/:password/:usuario', function (req, res){
+app.get('/login/:email/:password/', function (req, res){
     console.log('Passando no: Entrando no GET/LOGIN ');
 
     var erro = false;
@@ -51,7 +51,6 @@ app.get('/login/:email/:password/:usuario', function (req, res){
     var login_temp = {};
     login_temp.email = req.params.email;
     login_temp.password = req.params.password;
-    login_temp.usuario = req.params.usuario;
 
     var status_code = 200;
     var msg_text = ""; 
