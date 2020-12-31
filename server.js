@@ -233,6 +233,7 @@ function login_select(login_temp){
                 reject(obj_err);
             }else{
                 console.log('Dentro da Promise -> Selecionado: ' + results.length);
+                console.log('Dentro da Promise -> Result: ' + results);
                 resolve(results); 
             } 
   
