@@ -259,6 +259,7 @@ function register_select(register_temp){
                 reject(obj_err);
             }else{
                 console.log('Dentro da Promise -> Selecionado: ' + results.length);
+                console.log('Result: ' + results);
                 resolve(results); 
             } 
   
