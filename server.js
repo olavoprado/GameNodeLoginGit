@@ -134,18 +134,6 @@ app.get('/login/:email/', function (req, res){
         login_select_id(login_temp).then((result) => {
 
             console.log('Passando no Login_select.then() ');
-            //Caso não retorno dados compativeis com email e senha
-            if (parseInt(result.length) == 0) {
-                console.log('Passando no Login_select_id.then() > Verifica resultado == 0');
-                status_code = 400;
-                msg_text = 'Login ou senha incorretos, verifique e tente novamente! ';
-            }
-
-            if (parseInt(result.length) > 1) {
-                console.log('Passando no Login_select_id.then() > Verifica resultado > 1');
-                status_code = 400;
-                msg_text = 'Existe um problema com seus dados, entre em contato! ';
-            }
 
             // Carregando o objeto de resposta
             msg_res.status = status_code;
@@ -301,9 +289,9 @@ function login_select(login_temp){
 function login_select_id(login_temp){
 
     return new Promise((resolve, reject) => {
-        console.log(`SELECT id_login,user FROM login WHERE email = '${login_temp.email}' `);
+        console.log(`SELECT id_login FROM login WHERE email = '${login_temp.email}' `);
 
-        connection.query(`SELECT id_login,user FROM login WHERE email = '${login_temp.email}' `, function (err, results, field) {
+        connection.query(`SELECT id_login FROM login WHERE email = '${login_temp.email}' `, function (err, results, field) {
             console.log('entro no comando');
             var obj_err = {};
             obj_err.msg_text = '......>>>>>> login_select_id - Não entrou no erro ainda ....';
