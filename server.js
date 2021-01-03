@@ -140,6 +140,8 @@ app.get('/login/:email/', function (req, res){
             msg_res.message = msg_text;
             //Retorno mensagem com status e mensagem
             res.status(msg_res.status).json(msg_res);
+            var id = result;
+            console.log("Verifica id retorno 1: " + id);
 
         }).catch((err) => {
 
