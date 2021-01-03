@@ -340,7 +340,7 @@ function register_select(register_temp){
                 obj_err.msg_text = err;
                 reject(obj_err);
             }else{
-                console.log('Dentro da Promise -> Selecionado: ' + results.length);
+                console.log('Dentro da Promise -> Selecionado: ' + field);
                 resolve(results); 
             } 
   
