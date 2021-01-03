@@ -29,6 +29,7 @@ connection.connect(function(err){
         return;
     }
     console.log('Conected as ID: ' + connection.threadId);
+    connection.end();
 });
 
 //#endregion
