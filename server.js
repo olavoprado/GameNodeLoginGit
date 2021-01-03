@@ -160,6 +160,8 @@ app.get('/login/:email/', function (req, res){
         msg_res.message = msg_text;
     
         res.status(msg_res.status).json(msg_res);
+        var id = result;
+        console.log("Verifica id retorno: " + id);
     }
 });
 
@@ -302,9 +304,8 @@ function login_select_id(login_temp){
                 obj_err.msg_text = err;
                 reject(obj_err);
             }else{
-                console.log('Dentro da Promise GET/LOGIN -> Selecionado: ' + `${results[0].solution}`);
-                //resolve(field); 
-                resolve(`Solution = ${results[0].solution}`);
+                console.log('Dentro da Promise GET/LOGIN -> Selecionado: ' + results.length);
+                resolve(results); 
             } 
   
         });
