@@ -34,6 +34,8 @@ connection.connect(function(err){
 //#endregion
 
 //#region ################### GET ####################################
+
+// GET LOGIN
 app.get('/', function (req, res){
     console.log('Passando no: Entrando no GET/ ');
     res.send('Welcome!');
@@ -55,8 +57,6 @@ app.get('/login/:email/:password/', function (req, res){
     var status_code = 200;
     var msg_text = ""; 
 
-    console.log(login_temp);
-    console.log('TAG OLAVO 1 ');
     if (!validator.isEmail(login_temp.email)) {
         console.log('Passando no: Login > Validação de Formato de E-mail');
         status_code = 400;
@@ -64,11 +64,9 @@ app.get('/login/:email/:password/', function (req, res){
         erro = true;
 
     }
-    console.log('TAG OLAVO 2 ');
     if (erro == false) {
         //Consulta no banco de dados
         //SELECT
-        console.log('TAG OLAVO 3 ');
         login_select(login_temp).then((result) => {
 
             console.log('Passando no Login_select.then() ');
@@ -85,13 +83,11 @@ app.get('/login/:email/:password/', function (req, res){
                 msg_text = 'Existe um problema com seus dados, entre em contato! ';
             }
 
-            // Carregandoi o objeto de resposta
+            // Carregando o objeto de resposta
             msg_res.status = status_code;
             msg_res.message = msg_text;
             //Retorno mensagem com status e mensagem
             res.status(msg_res.status).json(msg_res);
-
-
 
         }).catch((err) => {
 
@@ -106,18 +102,79 @@ app.get('/login/:email/:password/', function (req, res){
             console.log('--->> Login - catch - Erro: ' + msg_res.message );
             //Retorno mensagem com status e mensagem
             res.status(msg_res.status).json(msg_res);
-
-
-
         });
     }else{
         msg_res.status = status_code;
         msg_res.message = msg_text;
     
         res.status(msg_res.status).json(msg_res);
-    
     }
 });
+
+//GET LOGIN ID USER
+app.get('/login/:email/', function (req, res){
+    console.log('Passando no: Entrando no GET/LOGIN/ID/USER/ ');
+
+    var erro = false;
+
+    var msg_res = {};
+    msg_res.status = 200;
+    msg_res.message = "";
+
+    var login_temp = {};
+    login_temp.email = req.params.email;
+
+    var status_code = 200;
+    var msg_text = ""; 
+
+
+    if (erro == false) {
+        //Consulta no banco de dados
+        //SELECT
+        login_select_id(login_temp).then((result) => {
+
+            console.log('Passando no Login_select.then() ');
+            //Caso não retorno dados compativeis com email e senha
+            if (parseInt(result.length) == 0) {
+                console.log('Passando no Login_select_id.then() > Verifica resultado == 0');
+                status_code = 400;
+                msg_text = 'Login ou senha incorretos, verifique e tente novamente! ';
+            }
+
+            if (parseInt(result.length) > 1) {
+                console.log('Passando no Login_select_id.then() > Verifica resultado > 1');
+                status_code = 400;
+                msg_text = 'Existe um problema com seus dados, entre em contato! ';
+            }
+
+            // Carregando o objeto de resposta
+            msg_res.status = status_code;
+            msg_res.message = msg_text;
+            //Retorno mensagem com status e mensagem
+            res.status(msg_res.status).json(msg_res);
+
+        }).catch((err) => {
+
+            console.log('Passando no: Login > Login_select_id.catch()' );
+            if (err) {
+                msg_res.status  = err.status_code;
+                msg_res.message = err.msg_text;
+            }else{
+                msg_res.status  = 500;
+                msg_res.message = 'Não é possivel realizar a ação, tente novamente em breve! ';  
+            }
+            console.log('--->> Login - id - catch - Erro: ' + msg_res.message );
+            //Retorno mensagem com status e mensagem
+            res.status(msg_res.status).json(msg_res);
+        });
+    }else{
+        msg_res.status = status_code;
+        msg_res.message = msg_text;
+    
+        res.status(msg_res.status).json(msg_res);
+    }
+});
+
 //#endregion
 
 //#region ################### POST ##################################
@@ -233,7 +290,31 @@ function login_select(login_temp){
                 reject(obj_err);
             }else{
                 console.log('Dentro da Promise -> Selecionado: ' + results.length);
-                console.log('Dentro da Promise -> Result: ' + results);
+                resolve(results); 
+            } 
+  
+        });
+
+    });
+}
+
+function login_select_id(login_temp){
+
+    return new Promise((resolve, reject) => {
+        console.log(`SELECT id_login,user FROM login WHERE email = '${login_temp.email}' `);
+
+        connection.query(`SELECT id_login,user FROM login WHERE email = '${login_temp.email}' `, function (err, results, field) {
+            console.log('entro no comando');
+            var obj_err = {};
+            obj_err.msg_text = '......>>>>>> login_select_id - Não entrou no erro ainda ....';
+            console.log(err);
+            if (err) {
+                console.log('ERRO: login_select_id dentro da PROMISE: ' + err);
+                obj_err.status_code = 400;
+                obj_err.msg_text = err;
+                reject(obj_err);
+            }else{
+                console.log('Dentro da Promise -> Selecionado: ' + results);
                 resolve(results); 
             } 
   
@@ -260,7 +341,6 @@ function register_select(register_temp){
                 reject(obj_err);
             }else{
                 console.log('Dentro da Promise -> Selecionado: ' + results.length);
-                console.log('Result: ' + results);
                 resolve(results); 
             } 
   
@@ -296,8 +376,6 @@ function register_insert(register_temp){
 //#endregion
 
 //#region ################### MENU GAME ##############################
-
-
 
 //#endregion
 
