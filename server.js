@@ -314,7 +314,7 @@ function login_select_id(login_temp){
                 obj_err.msg_text = err;
                 reject(obj_err);
             }else{
-                console.log('Dentro da Promise -> Selecionado: ' + results);
+                console.log('Dentro da Promise GET/LOGIN -> Selecionado: ' + results);
                 resolve(results); 
             } 
   
