@@ -140,7 +140,7 @@ app.get('/getlogin/:email/', function (req, res){
             msg_res.status = status_code;
             msg_res.message = msg_text;
             //Retorno mensagem com status e mensagem
-            res.status(msg_res.status).json(msg_res);
+            //res.status(msg_res.status).json(msg_res);
             res.send(id);
             
             
