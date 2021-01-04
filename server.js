@@ -306,6 +306,9 @@ function login_select_id(login_temp){
             }else{
                 console.log('Dentro da Promise GET/LOGIN -> Selecionado: ' + results.length);
                 console.log('Dentro da Promise GET/LOGIN -> Selecionado: ' + results.rows);
+                
+                var row = results[0];
+                console.log(row.id_login);
                 resolve(results); 
             } 
   
