@@ -134,14 +134,14 @@ app.get('/login/:email/', function (req, res){
         login_select_id(login_temp).then((result) => {
 
             console.log('Passando no Login_select.then() ');
-
+            var id = result[0].id_login;
             // Carregando o objeto de resposta
-            msg_res.status = status_code;
+            msg_res.status = id;
             msg_res.message = msg_text;
             //Retorno mensagem com status e mensagem
             res.status(msg_res.status).json(msg_res);
-            var id = results[0].objid;
-            console.log("Verifica id retorno 1: " + results[0].objid);
+            
+            console.log("Verifica id retorno 1: " + id);
 
         }).catch((err) => {
 
