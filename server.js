@@ -138,10 +138,10 @@ app.get('/getlogin/:email/', function (req, res){
             console.log("Verifica id retorno 1: " + id);
             // Carregando o objeto de resposta
             msg_res.status = status_code;
-            msg_res.message = id;
+            msg_res.message = msg_text;
             //Retorno mensagem com status e mensagem
-            res.status(msg_res.status).json(msg_res);
-            //res.send(id);
+            //res.status(msg_res.status).json(msg_res);
+            res.send(id);
             
             
 
