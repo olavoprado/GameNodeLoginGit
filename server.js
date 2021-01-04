@@ -112,7 +112,7 @@ app.get('/login/:email/:password/', function (req, res){
 });
 
 //GET LOGIN ID USER
-app.get('/login/:email/', function (req, res){
+app.get('/getlogin/:email/', function (req, res){
     console.log('Passando no: Entrando no GET/LOGIN/ID/USER/ ');
 
     var erro = false;
