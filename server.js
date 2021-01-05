@@ -271,6 +271,7 @@ function login_select(login_temp){
         console.log(`SELECT * FROM login WHERE email = '${login_temp.email}' and password = '${login_temp.password}' `);
 
         connection.query(`SELECT * FROM login WHERE email = '${login_temp.email}' and password = '${login_temp.password}' `, function (err, results, field) {
+            connection.release();
             console.log('entro no comando');
             var obj_err = {};
             obj_err.msg_text = '......>>>>>> login_select - Não entrou no erro ainda ....';
@@ -296,6 +297,7 @@ function login_select_id(login_temp){
         console.log(`SELECT id_login FROM login WHERE email = '${login_temp.email}' `);
 
         connection.query(`SELECT id_login FROM login WHERE email = '${login_temp.email}' `, function (err, results, field) {
+            connection.release();
             console.log('entro no comando');
             var obj_err = {};
             obj_err.msg_text = '......>>>>>> login_select_id - Não entrou no erro ainda ....';
@@ -324,6 +326,7 @@ function register_select(register_temp){
         console.log('Dentro da Promise ->');
 
         connection.query(`SELECT * FROM login WHERE email = '${register_temp.email}' `, function (err, results, field) {
+            connection.release();
             console.log('entro no comando');
             var obj_err = {};
             obj_err.msg_text = '......>>>>>> register_select - Não entrou no erro ainda ....';
@@ -347,6 +350,7 @@ function register_insert(register_temp){
         console.log('Dentro da Promise ->');
 
         connection.query(`INSERT INTO login (email, password,user) VALUES ('${register_temp.email}', '${register_temp.password}', '${register_temp.usuario}' ) `, function (err, results, field) {
+            connection.release();
             console.log('entro no comando');
             var obj_err = {};
             obj_err.msg_text = '......>>>>>> register_insert - Não entrou no erro ainda ....';
