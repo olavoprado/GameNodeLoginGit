@@ -283,7 +283,7 @@ function login_select(login_temp){
             }else{
                 console.log('Dentro da Promise -> Selecionado: ' + results.length);
                 resolve(results);
-                connection.release(); 
+                //connection.release(); 
             } 
   
         });
@@ -312,7 +312,7 @@ function login_select_id(login_temp){
                 console.log('Dentro da Promise GET/LOGIN -> Selecionado: ' + results.rows);
                 console.log('Dentro da Promise GET/LOGIN -> ID_LOGIN: ' + results[0].id_login);
                 resolve(results); 
-                connection.release();
+                //connection.release();
             } 
   
         });
@@ -340,7 +340,7 @@ function register_select(register_temp){
             }else{
                 console.log('Dentro da Promise -> Selecionado: ' + results.length);
                 resolve(results); 
-                connection.release();
+                //connection.release();
             } 
   
         });
@@ -365,7 +365,7 @@ function register_insert(register_temp){
             }else{
                 console.log('Dentro da Promise -> Linhas Afetadas: ' + results.length + '|' + results.insertId);
                 resolve(results); 
-                connection.release();
+                //connection.release();
             } 
   
         });
